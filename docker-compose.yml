@@ -1,0 +1,19 @@
+services:
+  nest:
+    image: lh_nest-api
+    build:
+      context: .
+      target: development
+      dockerfile: ./Dockerfile
+    command: npm run start:dev
+    env_file:
+      - .env
+    ports:
+      - 5157:3002
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: unless-stopped
+
+networks:
+  nesjs-network:
